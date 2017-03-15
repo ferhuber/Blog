@@ -1,0 +1,46 @@
+h1{
+
+  background: -webkit-linear-gradient(top left, #3acfd5 0%, #3a4ed5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Hind', sans-serif;
+
+}
+
+
+.user-new{
+  font-family: 'Hind', sans-serif;
+  position: relative;
+  margin: auto;
+	  // background: #eee;
+      border: 2px solid transparent;
+	  -moz-border-image: -moz-linear-gradient(top left, #3acfd5 0%, #3a4ed5 100%);
+	  -webkit-border-image: -webkit-linear-gradient(top left, #3acfd5 0%, #3a4ed5 100%);
+	  border-image: linear-gradient(to bottom right, #3acfd5 0%, #3a4ed5 100%);
+	  border-image-slice: 1;
+    padding-bottom: 10px;
+}
+
+.button input{
+  margin-top: 10px;
+  background-image: -webkit-linear-gradient(top left, #3acfd5 0%, #3a4ed5);
+  background-image: -moz-linear-gradient(top left, #3acfd5 0%, #3a4ed5);
+  background-image: -ms-linear-gradient(top left, #3acfd5 0%, #3a4ed5);
+  background-image: -o-linear-gradient(top left, #3acfd5 0%, #3a4ed5);
+  background-image: linear-gradient(to bottom right, #3acfd5 0%, #3a4ed5);
+
+  border: none;
+
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.space{
+  width: 70%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}

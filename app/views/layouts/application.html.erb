@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+
+  <body>
+
+    <header class="navigation ">
+      <nav class="navbar navbar-inverse navbar-fixed-top"  >
+        <div class="container-fluid">
+          <div class="navbar-header">
+
+            <button
+              type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#nav-collapsible-section">
+              <span class="glyphicon glyphicon-menu-hamburger">
+            </button>
+
+            <a class="navbar-brand" href="/">
+            <span class="glyphicon glyphicon-home"></span>
+            </a>
+
+          </div>
+
+          <div class="navbar-collapse collapse" id="nav-collapsible-section">
+
+
+            <ul class="nav navbar-nav">
+              <!-- <form class="navbar-form navbar-right visible-xs">
+                <div class="input-group search-group">
+                  <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-search"></i></span>
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+              </form> -->
+
+            <li><a href="<%=new_post_path%>">New Post</a></li>
+            <li><a href="<%=likes_path%>">Liked Posts</a></li>
+            </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li><%= link_to  current_user.full_name, user_path(current_user.id) %></li>
+            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+            <% elsif %>
+            <li><a href="<%=new_session_path %>">Login</a></li>
+            <li><a href="<%=new_user_path %>">Sign Up</a></li>
+            <% end  %>
+          </ul>
+
+        <!-- <form class="navbar-form navbar-right hidden-xs">
+          <div class="input-group search-group">
+             <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-search"></i></span>
+             <input type="text" class="form-control" placeholder="Search">
+           </div>
+        </form> -->
+          </div>
+
+        </div>
+      </nav>
+    </header>
+
+
+    <div class="alert">
+      <h3><%= notice || alert %></h3>
+    </div>
+
+    <%= yield %>
+  </body>
+  <!-- ################# FOOTER ################ -->
+
+  <div class=" col-xs-12 col-md-12 col-lg-12 social-media footer navbar-fixed-bottom" >
+        <footer>
+
+              <i class="fa fa-facebook-official fa-2x" aria-hidden="true" ></i>
+              <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+
+        </footer>
+      </div>
+
+</html>

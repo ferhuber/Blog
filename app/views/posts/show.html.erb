@@ -1,0 +1,155 @@
+<% photo = ["florest.jpg" ,"corais.jpg","beach.jpg","lake.jpg","moutains.jpg",
+  "night-forest.jpg","wisconsin.jpg", "trip.jpg", "trip2.jpg", "trip3.jpg", "trip4.jpg", "space.jpg", "pizza.jpg" ] %>
+
+<% avatar = ["avatar/dexter.jpg", "avatar/dark.jpg", "avatar/polvo.png","avatar/dark.jpg"] %>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- ################# MAIN POST################ -->
+    <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10">
+      <h2><%= @post.title %></h2>
+      <div class="post-first">
+
+      <%= image_tag photo.shuffle.sample, id: "img-show"%>
+
+
+      <div class="col-sm-offset-2 col-md-8 col-lg-8 full-post">
+
+      <p><%= @post.post %></p>
+        <p><%= @post.user.try(:full_name) %></p>
+      <p><%= @comment.body %></p>
+
+
+
+
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Delete', post_path(@post),
+                            method: :delete %>
+
+
+      <div class="col-md-offset-10 col-md-2 col-lg-2 pull-right sub-picture ">
+        <h5 class="pull-right"><%= @post.updated_at.strftime('%Y-%B-%d') %></h5>
+
+        <div class=" col-xs-10 ">
+          <% if user_signed_in? && can?(:like, @post) %>
+            <% if @post.liked_by?(current_user) %>
+
+              <%= link_to  like_path(@post.like_for(current_user)), method: :delete do %>
+              <i class="glyphicon glyphicon-heart" aria-hidden="true"></i><% end %>
+
+            <% else %>
+            <%= link_to  post_likes_path(@post), method: :post do %>
+            <i class="fa fa-heart-o" aria-hidden="true"></i><% end %>
+
+            <% end %>
+            <%=@post.likes.count%>
+          <% end %>
+        </div>
+        <div class="glyphicon glyphicon-bookmark col-xs-1 hidden-md hidden-lg">
+        </div>
+      </div>
+
+
+      <div class="col-xs-12 col-md-10 col-lg-10 ">
+        <hr>
+        <div class="col-xs-12 col-md-12 col-lg-12 post-category">
+          <h4 class="pull-left"> Category: <%= @category.name %></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ################# AUTHOR ################ -->
+  <!-- <div class="col-xs-3 col-md-3 col-lg-3" >
+      <div class="author">
+        <div class="author-picture">
+          <%#= image_tag photo.shuffle.sample, id: "img"%>
+
+        </div>
+      </div>
+    </div>
+
+      <div class="col-xs-9 col-md-5 col-lg-5">
+
+        <div class="author-comments">
+
+          <h5>Author: <%#= @comments.last.user.try(:full_name)%> </h5>
+          <p><%#= @comments.last.try(:body) %></p>
+
+
+        </div>
+       </div>
+     </div>
+     </div>
+     </div> -->
+<!-- ################# COMMENT-CONTAINER ################ -->
+
+<!-- <div class="col-xs-12 col-sm-offset-3 col-md-10 col-lg-10 comment-container">
+
+</div> -->
+
+<!-- ################# COMMENT ################ -->
+      <div class="comment col-xs-12 col-md-offset-2 col-md-8 col-md-offset-2 col-lg-offset-2 col-lg-8 ">
+      <div class="comments">
+      <h4>Leave a comment:</h4>
+
+      <%= form_for [@post, @comment] do |f| %>
+
+        <%= f.text_area :body %>
+        <br>
+        <%= f.submit %>
+        <% end %>
+
+      <hr>
+
+      </div>
+<!-- ################# COMMENTS ################ -->
+
+
+<% @comments.latest_first.each do |comment| %>
+      <div class="comments">
+        <div class="col-xs-1  col-md-2  col-lg-2">
+          <div class="author">
+            <div class="author-picture">
+            <%= image_tag avatar.shuffle.sample, id: "img-ava"%>
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-xs-9  col-md-9 ">
+          <div class="author-comments">
+
+              <p><%= comment.body %></p>
+              <%= link_to 'Edit',
+              edit_comment_path(comment) %> |
+
+              <%= link_to 'Delete',
+                post_comment_path(@post, comment),
+                method: :delete %>
+
+
+          </div>
+        </div>
+
+        <!-- <div class="col-xs-12 col-md-12 author-date"> -->
+
+          <div class="col-xs-6 col-md-6 pull-left">
+          <p>Author: <%= comment.user.try(:first_name) %> <%= comment.user.try(:last_name) %></p>
+          </div>
+
+          <div class="col-xs-6 col-md-6 pull-right" id="text">
+          <p class="pull-right"><%= comment.updated_at.strftime('%Y-%B-%d') %></p>
+          </div>
+
+        <!-- </div> -->
+      </div>
+      <% end %>
+    </div>
+
+</div>
+</div>
+</div>

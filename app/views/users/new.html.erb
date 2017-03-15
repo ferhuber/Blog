@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="user-new col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10" >
+
+    <h2>Sign Up</h2>
+    <%= @user.errors.full_messages.join(', ') %>
+
+    <%= form_for @user do |f| %>
+    <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="button">
+      <%= f.submit 'Sign Up' %>
+    </div>
+
+
+    <% end %>
+
+  </div>
+</div>
+</div>

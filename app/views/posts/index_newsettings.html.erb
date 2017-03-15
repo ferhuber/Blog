@@ -1,0 +1,121 @@
+
+
+
+<% @photo = ["florest.jpg" ,"corais.jpg","beach.jpg","lake.jpg","moutains.jpg",
+  "night-forest.jpg","wisconsin.jpg" ] %>
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="alert">
+      <h3><%= notice || alert %></h3>
+    </div>
+    <!-- ################# MAIN POST################ -->
+
+    <div class="hidden-xs  col-sm-offset-1 col-md-8 col-lg-8">
+      <div class="post-first">
+      <%= image_tag @photo.shuffle.sample, id: "img"%>
+      <div class="sub-picture">
+        <div class="glyphicon glyphicon-heart col-xs-11">
+            1234
+        </div>
+        <div class="glyphicon glyphicon-bookmark col-xs-1">
+        </div>
+      </div>
+
+      <!-- <% if @posts != nil %> -->
+        <div class=" post-title">
+
+          <h2><%= link_to @posts.first.try(:title) , post_path(@posts.first) %></h2>
+
+          <p><%= truncate(@posts.first.try(:post), length: 750) { link_to "Read more.", post_path(@posts.first.try(:id)) }%></p>
+        </div>
+      <!-- <% end %> -->
+
+      <div class="post-footer">
+        <h5><%= @posts.first.user.try(:full_name) %></h5>
+        <h5><%= @posts.first.try(:updated_at) %></h5>
+      </div>
+      </div>
+
+    </div>
+
+    <div class="hidden-xs col-md-2 col-lg-2">
+      <div class="most-like">
+        <p>The Worst We`ve Ever Heard</p>
+        <p>Think You`re Cut Out For Doing Design</p>
+        <p>How to Solve The Biggest Problems With</p>
+        <p>10 Things Your Competions Can teach</p>
+        <p>14 Common Misconceptions About</p>
+        <p>The History Of Design</p>
+        <p>10 Sigs You Should Invest In Tech</p>
+        <p>5 Tools Everyone In The Design Industry</p>
+
+      </div>
+
+    </div>
+
+
+<!-- ################# POSTS ################ -->
+
+
+    <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10" >
+
+      <div class="posts">
+
+
+        <% @posts.each do |post| %>
+
+        <div class="post  " style=" background-image: url(<%= asset_path  @photo.shuffle.sample %>);">
+
+          <%#= image_tag @photo.shuffle.sample, id: "img"%>
+
+        <div class=" post-title">
+
+          <h3><%= link_to post.title , post_path(post) %></h3>
+
+
+           <p><%= truncate(post.post, length: 150) { link_to "Read more.", post_path(post) }%></p>
+          <%# @posts[p].category&.name %>
+          <%# @posts[p].category && @posts[p].category.name %>
+      </div>
+
+      <div class="sub-picture">
+        <div class="glyphicon glyphicon-heart col-xs-10">
+          1234
+        </div>
+        <div class="glyphicon glyphicon-bookmark col-xs-1">
+        </div>
+      </div>
+        <div class="post-footer">
+          <h5><%= author_name(post) %></h5>
+          <h5><%= post.created_at %></h5>
+        </div>
+        </div>
+        <% end %>
+
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+</div>
+
+<footer>
+  <div class=" col-xs-12 col-md-12 social-media" >
+
+      <i class="fa fa-facebook-official fa-2x" aria-hidden="true" ></i>
+      <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+
+  </div>
+</footer>

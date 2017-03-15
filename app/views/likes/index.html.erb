@@ -1,0 +1,9 @@
+
+<h3>Posts liked by <%= @user&.full_name %>:</h3>
+
+<ul>
+<% @posts.each do |p| %>
+
+  <li><%= link_to p.title, p %></li>
+<% end %>
+</ul>

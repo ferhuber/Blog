@@ -1,0 +1,68 @@
+
+<% photo = ["florest.jpg" ,"corais.jpg","beach.jpg","lake.jpg","moutains.jpg",
+  "night-forest.jpg","wisconsin.jpg", "trip.jpg", "trip2.jpg", "trip3.jpg", "trip4.jpg", "space.jpg", "pizza.jpg" ] %>
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- ################# MAIN POST################ -->
+
+    <div class="hidden-xs  col-sm-offset-1 col-md-8 col-lg-8">
+      <div class="post-first">
+        <%= image_tag photo.shuffle.sample, id: "img"%>
+        <!-- <% if @posts != nil %> -->
+          <div class=" post-title">
+
+            <h2><%= link_to @posts.first.try(:title) , post_path(@posts.first) %></h2>
+
+            <p><%= truncate(@posts.first.try(:post), length: 250) { link_to "Read more.", post_path(@posts.first.try(:id)) }%></p>
+          </div>
+        <!-- <% end %> -->
+
+        <div class="post-footer">
+          <h5><%= @posts.first.user.try(:full_name) %></h5>
+          <h5><%= @posts.first.try(:updated_at).strftime('%Y-%B-%d') %></h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden-xs col-md-2 col-lg-2">
+      <div class="most-like">
+        <p>The Worst We`ve Ever Heard</p>
+        <p>Think You`re Cut Out For Doing Design</p>
+        <p>How to Solve The Biggest Problems With</p>
+        <p>10 Things Your Competions Can teach</p>
+        <p>14 Common Misconceptions About</p>
+        <p>The History Of Design</p>
+        <p>10 Sigs You Should Invest In Tech</p>
+        <p>5 Tools Everyone In The Design Industry</p>
+      </div>
+    </div>
+
+<!-- ################# POSTS ################ -->
+
+    <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10" >
+
+      <div class="posts">
+        <h1>Articles</h1>
+        <hr>
+
+        <% @posts.each do |post| %>
+
+        <div class="post ">
+          <h3><%=link_to truncate(post.title, :length => 26),  post_path(post)%></h3>
+          <%= image_tag photo.shuffle.sample, id: "img_post"%>
+          <div class=" post-title">
+          <p><%= truncate(post.post, length: 40) { link_to "Read more.", post_path(post) }%></p>
+          <p><%=pluralize post.likes.count , 'like'%></p>
+          <hr>
+          <p>Created by: <%= author_name(post) %> </p>
+          <p>Created at: <%= post.created_at.strftime('%Y-%B-%d') %></p>
+          </div>
+      </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

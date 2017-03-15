@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class=" post-new col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10" >
+      <p><%= @post.errors.full_messages.join(', ') %></p>
+      <h2>Create a new post</h2>
+      <%= form_for @post do |f| %>
+      Categories:
+      <%= f.select(:category_id) do %>
+      <%= options_from_collection_for_select(Category.all, :id, :name) %>
+      <% end %>
+        <div>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div>
+          <%= f.label :post %>
+          <%= f.text_area :post %>
+        </div>
+        <div class="button">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
