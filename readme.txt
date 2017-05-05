@@ -1,4 +1,4 @@
-rails new cleverbana -d postgresql -T
+rails new test -d postgresql -T
 
 rails db:create
 
